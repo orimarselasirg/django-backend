@@ -71,10 +71,10 @@ def task_api_view_creator(request):
         return Response({'status': 'error', 'msg':'hay un error en la peticion'}, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['GET'])
-def task_api_view_search(request, task):
+def task_api_view_search(request, task, id):
     if request.method == 'GET':
         try:
-            tasks = Task.objects.filter(task__icontains= task)
+            tasks = Task.objects.filter(task__icontains= task, user=id)
             task_serializer = TaskSerializer(tasks, many=True)
             return Response(task_serializer.data, status=status.HTTP_201_CREATED)
         except:
