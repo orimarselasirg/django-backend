@@ -50,6 +50,7 @@ INSTALLED_APPS = BASE_APPS + LOCAL_APPS + THIRD_APPS
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -57,7 +58,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'simple_history.middleware.HistoryRequestMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'tasks_api.urls'
@@ -141,7 +141,9 @@ DATABASES = {
 STATIC_URL = 'static/'
 
 if not DEBUG:
-    STATIC_URL = os.path.join(BASE_DIR, 'staticfiles')
+    
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Default primary key field type
