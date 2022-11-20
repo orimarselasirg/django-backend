@@ -100,6 +100,8 @@ AUTH_PASSWORD_VALIDATORS = [
 
 CORS_ORIGIN_WHITELIST = [
     "http://localhost:3000",
+    "https://637a640c05fb045d1aa83e74--cute-beijinho-a64cd6.netlify.app",
+    "http://www.taskmanager.delosandes.xyz"
 ]
 
 
