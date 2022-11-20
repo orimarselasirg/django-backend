@@ -1,10 +1,12 @@
 from pathlib import Path
+import dj_database_url
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 DEBUG = 'RENDER' not in os.environ
+# DEBUG = True
 
 ALLOWED_HOSTS = []
 RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME') # con esto defino que la variable de entorno RENDER_HOST_NAME, es igual a esa variable de entorno que defino el RENDER
@@ -113,6 +115,23 @@ USE_I18N = True
 USE_TZ = True
 
 AUTH_USER_MODEL = 'users.User'
+
+
+DATABASES = {
+    'default': dj_database_url.config(
+        default = 'sqlite:///dbsqlite3',
+        # {
+        # 'ENGINE': 'django.db.backends.postgresql',
+        # 'NAME': 'elenas',
+        # 'USERNAME': 'postgres',
+        # 'PASSWORD': 'R4M1R0.8489',
+        # 'HOST': 'localhost',
+        # 'PORT': '5432'
+        # },
+        conn_max_age = 600
+    )
+    
+}
 
 
 
